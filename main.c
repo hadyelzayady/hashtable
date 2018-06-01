@@ -7,9 +7,12 @@
 int main()
 {
 	Hashtable ht=hashtable(10);
-	insert(ht,10,"hellow world\0",15);
-	int x=getValue(ht,10,"hellow world\0");
+	insert(ht,"hellow world\0",15);
+	insert(ht,"hellow worldw\0",12);
+	int x=getValue(ht,"hellow world\0");
+	int y=getValue(ht,"hellow worldw\0");
 	printf("%i\n", x);
-	freeHash(ht,10);
+	printf("%i\n", y);
+	freeHash(ht);
 	return 0;
 }

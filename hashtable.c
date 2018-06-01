@@ -11,9 +11,10 @@ int hashstring(int size,char* str)
 	}
 	return sum % size;
 }
-int insert(Hashtable ht,int size,char* key, int value)
+int insert(Hashtable myhashtable,char* key, int value)
 {
-	int i = hashstring(size,key);
+	int i = hashstring(myhashtable.size,key);
+	table ht=myhashtable.table;
 	Node* node = malloc(sizeof(Node));
 	node->key = key;
 	node->value = value;
@@ -21,9 +22,11 @@ int insert(Hashtable ht,int size,char* key, int value)
 	ht[i] = node;
 	return 0;
 }
-int getValue(Hashtable ht,int size,char*key)
+int getValue(Hashtable myhashtable,char*key)
 {
-	int i = hashstring(size,key);
+
+	int i = hashstring(myhashtable.size,key);
+	table ht=myhashtable.table;
 	Node*next = ht[i];
 	Node*prev = next;
 	while (next != NULL)
@@ -37,9 +40,10 @@ int getValue(Hashtable ht,int size,char*key)
 	}
 	return 0;
 }
-int removekey(Hashtable ht,int size,char*input)
+int removekey(Hashtable myhashtable,char*input)
 {
-	int i = hashstring(size,input);
+	int i = hashstring(myhashtable.size,input);
+	table ht=myhashtable.table;
 	Node*next = ht[i];
 	Node*prev = next;
 	while (next != NULL)
@@ -59,10 +63,12 @@ int removekey(Hashtable ht,int size,char*input)
 	}
 	return 0;
 }
-void freeHash(Hashtable ht,int size)
+void freeHash(Hashtable myhashtable)
 {
 	Node*temp;
 	Node*next;
+	table ht=myhashtable.table;
+	int size=myhashtable.size;
 	for (int i = 0; i < size; ++i)
 	{
 		next =ht[i];
@@ -78,6 +84,7 @@ void freeHash(Hashtable ht,int size)
 
 Hashtable hashtable(int size)
 {
-	Hashtable myhashtable = calloc(10, sizeof(Node*));
+	table mytable = calloc(10, sizeof(Node*));
+	Hashtable myhashtable={.size=size,.table=mytable};
 	return myhashtable;
 }

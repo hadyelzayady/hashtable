@@ -7,13 +7,17 @@ struct Node {
 	Node* next;
 };
 
-typedef Node** Hashtable;
-
+typedef struct Node** table;
+typedef struct Hashtable Hashtable;
+struct Hashtable {
+	table table;
+	int size;
+};
 Hashtable hashtable(int size);
 int hashstring(int size,char* str);
-int insert(Hashtable ht,int size,char* key, int value);
-int getValue(Hashtable ht,int size,char*key);
-int removekey(Hashtable ht,int size,char*input);
-void freeHash(Hashtable ht,int size);
+int insert(Hashtable ht,char* key, int value);
+int getValue(Hashtable ht,char*key);
+int removekey(Hashtable ht,char*input);
+void freeHash(Hashtable ht);
 
 #endif
