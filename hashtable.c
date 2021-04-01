@@ -1,6 +1,8 @@
 #include "hashtable.h"
+
 #include <stdlib.h>
 #include <string.h>
+
 int hashstring(int size,char* str)
 {
 	int sum = 0;
